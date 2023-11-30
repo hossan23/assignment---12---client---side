@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { AuthContext } from './firebase/AuthProvider';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Spinner } from 'flowbite-react';
 
 const PrivateRoutes = ({ children }) => {
  const { user, loading } = useContext(AuthContext);
+ const location = useLocation();
  if (user) {
   return children;
  }
@@ -17,7 +18,7 @@ const PrivateRoutes = ({ children }) => {
   );
  }
 
- return <Navigate to="/login"></Navigate>;
+ return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
 export default PrivateRoutes;

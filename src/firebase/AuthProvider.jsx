@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
  };
 
  const updateUserProfile = (name, photo) => {
+  //   setLoading(true);
   return updateProfile(auth.currentUser, {
    displayName: name,
    photoURL: photo,
@@ -41,6 +42,7 @@ const AuthProvider = ({ children }) => {
  };
 
  const google = () => {
+  setLoading(true);
   return signInWithPopup(auth, googleProvider);
  };
 

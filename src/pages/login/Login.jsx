@@ -1,27 +1,64 @@
 import { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { AuthContext } from '../../firebase/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+ const axiosPublic = useAxiosPublic();
  const { signIn, google } = useContext(AuthContext);
+ const navigate = useNavigate();
+ const location = useLocation();
+ const from = location.state?.from.pathname || '/';
+
  const handleLogin = e => {
   e.preventDefault();
   const form = e.target;
   const email = form.email.value;
   const password = form.password.value;
   signIn(email, password)
-   .then(form.reset())
+   .then(res => {
+    console.log(res.data);
+    Swal.fire('User Logged In!');
+
+    form.reset();
+    navigate(from, { replace: true });
+   })
    .catch(err => console.log(err.message));
  };
 
+ //  const handleGoogle = () => {
+ //   google()
+ //    .then(res => {
+ //     console.log(res);
+ //    })
+ //    .catch(err => console.log(err.message));
+ //  };
+
  const handleGoogle = () => {
   google()
-   .then()
+   .then(res => {
+    console.log(res);
+    const userInfo = {
+     email: res.user?.email,
+     name: res.user?.displayName,
+     role: 'user',
+    };
+    axiosPublic
+     .post('/users', userInfo)
+     .then(res => {
+      console.log(res.data);
+      Swal.fire('Account Created!');
+
+      navigate(from, { replace: true });
+     })
+     .catch(err => console.log(err.message));
+   })
    .catch(err => console.log(err.message));
  };
  return (
-  <div className="flex justify-center items-center min-h-screen">
+  <div className="flex justify-center items-center md:mt-20">
    <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
     <div className="mb-8 text-center">
      <h1 className="my-3 text-4xl font-bold">Log In</h1>

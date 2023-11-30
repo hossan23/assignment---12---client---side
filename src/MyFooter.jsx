@@ -2,12 +2,12 @@ import { Footer } from 'flowbite-react';
 
 const MyFooter = () => {
  return (
-  <Footer container>
-   <Footer.Copyright href="#" by="Flowbite™" year={2022} />
+  <Footer container className="bg-slate-200">
+   <Footer.Copyright href="#" by="InsightPulse!" year={2023} />
    <Footer.LinkGroup>
-    <Footer.Link href="#">About</Footer.Link>
-    <Footer.Link href="#">Privacy Policy</Footer.Link>
-    <Footer.Link href="#">Licensing</Footer.Link>
+    <Footer.Link href="#">Survey Page</Footer.Link>
+    <Footer.Link href="#">About us</Footer.Link>
+    <Footer.Link href="#">Contact Us</Footer.Link>
     <Footer.Link href="#">Contact</Footer.Link>
    </Footer.LinkGroup>
   </Footer>
