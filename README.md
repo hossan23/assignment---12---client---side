@@ -1,8 +1,15 @@
-# React + Vite
+Client side :
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+*Admin can make user admin or surveyor
+*Admin can Approve a survey
+*surveyor can create or update their survey
+*user can vote
+\*Pro use can put comment
 
-Currently, two official plugins are available:
+server side :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*managing to many api
+*faced difficulties for put method
+*faced difficulties for patch method
+*faced difficulties for put method increment
+\*faced difficulties for put method push$
