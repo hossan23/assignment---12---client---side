@@ -77,7 +77,7 @@ const router = createBrowserRouter([
       <SurveyDetails></SurveyDetails>
      </PrivateRoutes>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/survey/${params.id}`),
+    loader: ({ params }) => fetch(`https://assignment-12-server-side-sigma.vercel.app/survey/${params.id}`),
    },
    {
     path: '/surveysResult/:id',
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
       <SurveyResult></SurveyResult>
      </PrivateRoutes>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/survey/${params.id}`),
+    loader: ({ params }) => fetch(`https://assignment-12-server-side-sigma.vercel.app/survey/${params.id}`),
    },
   ],
  },
@@ -121,7 +121,7 @@ const router = createBrowserRouter([
       <UpdateSurvey></UpdateSurvey>
      </PrivateRoutes>
     ),
-    loader: ({ params }) => fetch(`http://localhost:5000/survey/${params.id}`),
+    loader: ({ params }) => fetch(`https://assignment-12-server-side-sigma.vercel.app/survey/${params.id}`),
    },
    {
     path: 'manage-users',

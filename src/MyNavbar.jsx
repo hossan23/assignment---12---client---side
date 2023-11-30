@@ -8,6 +8,7 @@ import useAxiosPublic from './hooks/useAxiosPublic';
 const MyNavbar = () => {
  const { logOut, user } = useContext(AuthContext);
  const axiosPublic = useAxiosPublic();
+
  const { isPending, error, data } = useQuery({
   queryKey: ['navOnRole'],
   queryFn: async () => {

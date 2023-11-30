@@ -1,9 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
 import { Table } from 'flowbite-react';
+
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useContext } from 'react';
+import { AuthContext } from '../../firebase/AuthProvider';
 
 const ManageUsers = () => {
  const axiosPublic = useAxiosPublic();
+ const { user } = useContext(AuthContext);
  const { isPending, error, data, refetch } = useQuery({
   queryKey: ['manageUser'],
   queryFn: async () => {
@@ -11,6 +15,8 @@ const ManageUsers = () => {
    return response.data;
   },
  });
+
+ const filter = data?.filter(item => item?.email !== user?.email);
 
  if (isPending) return 'Loading...';
 
@@ -57,7 +63,7 @@ const ManageUsers = () => {
       </Table.HeadCell>
      </Table.Head>
      <Table.Body className="divide-y">
-      {data?.map(item => (
+      {filter?.map(item => (
        <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={item._id}>
         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">{item.name}</Table.Cell>
         <Table.Cell>{item.email}</Table.Cell>

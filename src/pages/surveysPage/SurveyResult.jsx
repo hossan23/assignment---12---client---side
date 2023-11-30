@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 const SurveyResult = () => {
- const { yes, no, _id } = useLoaderData();
+ const { yes, no, title } = useLoaderData();
 
  const data = [
   { name: 'Yes', value: yes },
@@ -13,7 +13,7 @@ const SurveyResult = () => {
 
  return (
   <div>
-   <h2>Survey Results Chart of: {_id}</h2>
+   <h2 className="text-2xl font-semibold text-center">{title}</h2>
    <ResponsiveContainer width="100%" height={300}>
     <PieChart>
      <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} fill="#8884d8" label>
