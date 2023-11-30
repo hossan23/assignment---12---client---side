@@ -25,6 +25,7 @@ import SurveyResult from './pages/surveysPage/SurveyResult';
 import About from './pages/about/About';
 import Contact from './pages/contact/Contact';
 import Privacy from './pages/privacy&policy/Privacy';
+import AdminFeedBack from './dashboard-pages/surveyor/AdminFeedBack';
 
 const queryClient = new QueryClient();
 
@@ -111,6 +112,14 @@ const router = createBrowserRouter([
     element: (
      <PrivateRoutes>
       <MySurveys></MySurveys>
+     </PrivateRoutes>
+    ),
+   },
+   {
+    path: 'admin-feedback',
+    element: (
+     <PrivateRoutes>
+      <AdminFeedBack></AdminFeedBack>
      </PrivateRoutes>
     ),
    },

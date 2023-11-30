@@ -1,10 +1,12 @@
 import { Button, Label, Select, TextInput } from 'flowbite-react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const UpdateSurvey = () => {
  const { _id, title, descriptions, category } = useLoaderData();
  const axiosPublic = useAxiosPublic();
+ const navigate = useNavigate();
 
  const handleCreate = e => {
   e.preventDefault();
@@ -18,6 +20,8 @@ const UpdateSurvey = () => {
    .put(`/survey/${_id}`, myData)
    .then(res => {
     console.log(res.data);
+    Swal.fire('Survey Updated successfully! Wait for admin to publish it');
+    navigate('/dashboard/my-surveys');
     form.reset();
    })
    .catch(err => console.log(err.message));

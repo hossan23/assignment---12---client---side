@@ -12,29 +12,26 @@ const Login = () => {
  const location = useLocation();
  const from = location.state?.from.pathname || '/';
 
- const handleLogin = e => {
+ const handleLogin = async e => {
   e.preventDefault();
   const form = e.target;
   const email = form.email.value;
   const password = form.password.value;
-  signIn(email, password)
-   .then(res => {
-    console.log(res.data);
-    Swal.fire('User Logged In!');
-
-    form.reset();
-    navigate(from, { replace: true });
-   })
-   .catch(err => console.log(err.message));
+  try {
+   const res = await signIn(email, password);
+   console.log(res.data);
+   Swal.fire('User Logged In!');
+   form.reset();
+   navigate(from, { replace: true });
+  } catch (error) {
+   console.error(error.message);
+   Swal.fire({
+    icon: 'error',
+    title: 'Login Failed',
+    text: 'Invalid email or password. Please try again.',
+   });
+  }
  };
-
- //  const handleGoogle = () => {
- //   google()
- //    .then(res => {
- //     console.log(res);
- //    })
- //    .catch(err => console.log(err.message));
- //  };
 
  const handleGoogle = () => {
   google()
@@ -49,7 +46,7 @@ const Login = () => {
      .post('/users', userInfo)
      .then(res => {
       console.log(res.data);
-      Swal.fire('Account Created!');
+      Swal.fire('Logged in!');
 
       navigate(from, { replace: true });
      })

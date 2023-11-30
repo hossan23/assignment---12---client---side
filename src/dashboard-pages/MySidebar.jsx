@@ -41,11 +41,9 @@ const MySidebar = () => {
         <li>
          <Link to="my-surveys">My Surveys</Link>
         </li>
+
         <li>
-         <Link to="/">User Feedbacks</Link>
-        </li>
-        <li>
-         <Link to="/">Admin Feedbacks</Link>
+         <Link to="admin-feedback">Admin Feedbacks</Link>
         </li>
        </>
       )}
@@ -57,12 +55,6 @@ const MySidebar = () => {
         </li>
         <li>
          <Link to="manage-survey">Manage Survey</Link>
-        </li>
-        <li>
-         <Link to="/">All Payments</Link>
-        </li>
-        <li>
-         <Link to="/">Survey responses</Link>
         </li>
        </>
       )}

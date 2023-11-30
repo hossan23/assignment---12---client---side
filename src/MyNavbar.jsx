@@ -1,13 +1,15 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from './firebase/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from './hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const MyNavbar = () => {
  const { logOut, user } = useContext(AuthContext);
  const axiosPublic = useAxiosPublic();
+ const navigate = useNavigate();
 
  const { isPending, error, data } = useQuery({
   queryKey: ['navOnRole'],
@@ -24,7 +26,12 @@ const MyNavbar = () => {
  if (error) return 'An error has occurred: ' + error.message;
  const handleLogOut = () => {
   logOut()
-   .then(console.log('logged Out'))
+   .then(res => {
+    console.log('logged Out');
+    navigate('/');
+    Swal.fire('Logged out successfully!');
+    console.log(res.data);
+   })
    .catch(err => console.log(err.message));
  };
  return (
