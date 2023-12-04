@@ -31,7 +31,8 @@ const SurveysPage = () => {
        <p className="font-medium text-gray-700 dark:text-gray-400">{item.descriptions}</p>
        <p>Category : {item.category}</p>
 
-       <p>Total Vote : {item.yes + item.no}</p>
+       <p>Total Like : {item.yes}</p>
+       <p>Total DisLike : {item.no}</p>
        <>
         {item?.commentText?.map((comment, index) => (
          <p key={index}>Comment : {comment}</p>
