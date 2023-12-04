@@ -26,6 +26,7 @@ import About from './pages/about/About';
 import Contact from './pages/contact/Contact';
 import Privacy from './pages/privacy&policy/Privacy';
 import AdminFeedBack from './dashboard-pages/surveyor/AdminFeedBack';
+import UserFeedBack from './dashboard-pages/surveyor/UserFeedBack';
 
 const queryClient = new QueryClient();
 
@@ -120,6 +121,14 @@ const router = createBrowserRouter([
     element: (
      <PrivateRoutes>
       <AdminFeedBack></AdminFeedBack>
+     </PrivateRoutes>
+    ),
+   },
+   {
+    path: 'user-feedback',
+    element: (
+     <PrivateRoutes>
+      <UserFeedBack></UserFeedBack>
      </PrivateRoutes>
     ),
    },

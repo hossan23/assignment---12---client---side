@@ -55,6 +55,11 @@ const ManageSurvey = () => {
        <hr />
        <p className="font-medium text-gray-700 dark:text-gray-400">{item.descriptions}</p>
        <p>Status : {item.status === 'publish' ? 'Published' : 'Pending' && item.status === 'unPublish' ? 'Un-Published' : 'Pending'}</p>
+       {item?.report?.map((comment, index) => (
+        <p key={index} className="text-red-500">
+         User-Report : {comment}
+        </p>
+       ))}
 
        <Button onClick={() => handlePublish(item._id)}>
         Publish

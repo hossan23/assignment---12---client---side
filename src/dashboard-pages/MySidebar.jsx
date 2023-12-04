@@ -43,7 +43,10 @@ const MySidebar = () => {
         </li>
 
         <li>
-         <Link to="admin-feedback">Admin Feedbacks</Link>
+         <Link to="admin-feedback">Admin Feedback</Link>
+        </li>
+        <li>
+         <Link to="user-feedback">User Feedbacks</Link>
         </li>
        </>
       )}

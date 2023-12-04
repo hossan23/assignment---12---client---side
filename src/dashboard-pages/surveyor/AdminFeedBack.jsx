@@ -23,7 +23,7 @@ const AdminFeedBack = () => {
  if (error) return 'An error has occurred: ' + error.message;
  return (
   <div>
-   <h1>Admin FeedBack</h1>
+   <h1 className="text-2xl text-center font-semibold my-4">Admin FeedBack</h1>
    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
     {filter2?.map(item => (
      <div key={item._id}>
