@@ -22,7 +22,7 @@ const SurveysPage = () => {
  return (
   <>
    <h1 className="capitalize text-3xl font-semibold text-center">All the surveys</h1>
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-10">
+   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 my-10">
     {filter?.map(item => (
      <div key={item._id}>
       <Card className="max-w-sm">

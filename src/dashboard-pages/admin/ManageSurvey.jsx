@@ -46,11 +46,11 @@ const ManageSurvey = () => {
 
  return (
   <div>
-   <h1>Manage Survey</h1>
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+   <h1 className="text-2xl text-center font-semibold my-4">Manage Survey</h1>
+   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
     {data?.map(item => (
      <div key={item._id}>
-      <Card className="max-w-sm">
+      <Card className="">
        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
        <hr />
        <p className="font-medium text-gray-700 dark:text-gray-400">{item.descriptions}</p>
@@ -63,8 +63,8 @@ const ManageSurvey = () => {
         </svg>
        </Button>
        <form>
-        <label>If you want to unpublish tell the surveyor why</label>
-        <input type="text" name="adminFeedback" id={`${item._id}`} />
+        <label className="font-semibold capitalize">If you want to unpublish tell the surveyor why</label>
+        <input className="w-full" type="text" name="adminFeedback" id={`${item._id}`} />
        </form>
 
        <Button onClick={() => handleUnPublish(item._id)}>
