@@ -6,4 +6,12 @@
 - user can vote
 - Pro use can put comment
 
+
+## Tech Stack
+
+**Client:** React, jsx, TailwindCSS, Firebase
+
+**Server:** Node, Express, Mongodb
+
+
 ### Live site link : https://assignment---12-f3db6.web.app
