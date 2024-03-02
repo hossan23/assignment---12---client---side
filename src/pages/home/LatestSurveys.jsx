@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { Button, Card, Spinner } from "flowbite-react";
+
 import { Link } from "react-router-dom";
 
 const LatestSurveys = () => {
@@ -31,7 +31,7 @@ const LatestSurveys = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {latestSixSurveys?.map((item) => (
           <div key={item._id}>
-            <Card className="max-w-sm">
+            <div className="max-w-sm">
               <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {item.title}
               </h5>
@@ -49,7 +49,7 @@ const LatestSurveys = () => {
               </>
 
               <Link to={`/surveysDetails/${item._id}`}>
-                <Button>
+                <button>
                   Navigate to Voting Page
                   <svg
                     className="-mr-1 ml-2 h-4 w-4"
@@ -63,9 +63,9 @@ const LatestSurveys = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                </Button>
+                </button>
               </Link>
-            </Card>
+            </div>
           </div>
         ))}
       </div>

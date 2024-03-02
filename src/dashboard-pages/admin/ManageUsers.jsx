@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { Table } from "flowbite-react";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";

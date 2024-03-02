@@ -1,10 +1,10 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./firebase/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import Headroom from "react-headroom";
 
 const MyNavbar = () => {
   const { logOut, user } = useContext(AuthContext);
@@ -34,62 +34,96 @@ const MyNavbar = () => {
       })
       .catch((err) => console.log(err.message));
   };
+
+  const navi = (
+    <>
+      <Link to="/">Home</Link>
+      <Link to="/surveys-page">Surveys Page</Link>
+      <Link to="/about">About Us</Link>
+      <Link to="/contact">Contact Us</Link>
+      <Link to="/privacy">Privacy & Policy</Link>
+      {userRole?.role === "user" && <Link to="/become-pro">Become A pro</Link>}
+    </>
+  );
   return (
     <>
-      <Navbar fluid rounded className="fixed top-0 w-full z-50 bg-slate-200">
-        <Navbar.Brand href="/">
-          {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            InsightPulse!
-          </span>
-        </Navbar.Brand>
-        <div className="flex md:order-2">
-          <Dropdown
-            arrowIcon={false}
-            inline
-            label={<Avatar alt="User settings" img={user?.photoURL} rounded />}
-          >
-            {user && (
-              <>
-                <Dropdown.Header>
-                  <span className="block text-sm">{user.displayName}</span>
-                  <span className="block truncate text-sm font-medium">
-                    {user.email}
-                  </span>
-                </Dropdown.Header>
-                <Link to="/dashboard">
-                  <Dropdown.Item>Dashboard</Dropdown.Item>
-                </Link>
-                <Dropdown.Divider />
-                <Dropdown.Item onClick={handleLogOut}>Sign out</Dropdown.Item>
-              </>
-            )}
+      <Headroom>
+        <div className="navbar bg-[#0891B2] text-white">
+          <div className="navbar-start">
+            <div className="dropdown">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost lg:hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
 
-            {!user && (
-              <>
-                <Link to="/register">
-                  <Dropdown.Item>Register</Dropdown.Item>
-                </Link>
-                <Dropdown.Divider />
-                <Link to="/login">
-                  <Dropdown.Item>Login</Dropdown.Item>
-                </Link>
-              </>
-            )}
-          </Dropdown>
-          <Navbar.Toggle />
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                {navi}
+              </ul>
+            </div>
+            <Link to="/" className="btn btn-ghost text-xl">
+              <img
+                src="/surveyor.png"
+                className="mr-3 h-6 sm:h-9"
+                alt="Flowbite React Logo"
+              />
+              InsightPulse!
+            </Link>
+          </div>
+          <div className="navbar-center hidden lg:flex">
+            <ul className="menu menu-horizontal px-1 space-x-10">{navi}</ul>
+          </div>
+          <div className="navbar-end">
+            <details className="dropdown">
+              <summary className="m-1 btn bg-transparent border-none ">
+                <img className="rounded-full w-10" src={user?.photoURL} />
+              </summary>
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box -ml-28 space-y-1">
+                {user && (
+                  <>
+                    <span className="block text-sm">{user?.displayName}</span>
+                    <span className="block truncate text-sm font-medium">
+                      {user?.email}
+                    </span>
+                    <Link to="/dashboard">Dashboard</Link>
+                    <button
+                      className="btn btn-sm btn-error"
+                      onClick={handleLogOut}
+                    >
+                      Sign out
+                    </button>
+                  </>
+                )}
+
+                {!user && (
+                  <>
+                    <Link to="/register">Register</Link>
+                    <Link to="/login">Login</Link>
+                  </>
+                )}
+              </ul>
+            </details>
+          </div>
         </div>
-        <Navbar.Collapse>
-          <Link to="/">Home</Link>
-          <Link to="/surveys-page">Surveys Page</Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/contact">Contact Us</Link>
-          <Link to="/privacy">Privacy & Policy</Link>
-          {userRole?.role === "user" && (
-            <Link to="/become-pro">Become A pro</Link>
-          )}
-        </Navbar.Collapse>
-      </Navbar>
+      </Headroom>
     </>
   );
 };
