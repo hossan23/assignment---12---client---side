@@ -7,10 +7,10 @@ const Root = () => {
     <>
       <MyNavbar />
 
-      <div className="container mx-auto pt-20 min-h-[calc(100vh-68px)]">
-        <Outlet></Outlet>
+      <div className="container mx-auto min-h-[calc(100vh-68px)]">
+        <Outlet/>
       </div>
-      <MyFooter></MyFooter>
+      <MyFooter/>
     </>
   );
 };

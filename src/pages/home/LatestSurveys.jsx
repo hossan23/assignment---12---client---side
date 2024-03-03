@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
 import { Link } from "react-router-dom";
 
 const LatestSurveys = () => {
@@ -11,11 +10,11 @@ const LatestSurveys = () => {
       const response = await axiosPublic.get("/surveys");
       return response.data;
     },
+
   });
 
   const filter = data?.filter((item) => item.status === "publish");
 
-  //   if (isPending) return "sub2handsomeboy612😆👍...";
   if (isPending) return;
 
   if (error) return "An error has occurred: " + error.message;
@@ -31,40 +30,27 @@ const LatestSurveys = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {latestSixSurveys?.map((item) => (
           <div key={item._id}>
-            <div className="max-w-sm">
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {item.title}
-              </h5>
-              <hr />
-              <p className="font-medium text-gray-700 dark:text-gray-400">
-                {item.descriptions}
-              </p>
-              <div className="flex">
-                <button>Total Vote : {item.yes + item.no}</button>
-              </div>
-              <>
-                {item?.commentText?.map((comment, index) => (
-                  <p key={index}>Comment : {comment}</p>
-                ))}
-              </>
+            <div className="card bg-red-100 shadow-xl">
+              <div className="card-body">
+                <h2 className="card-title">{item.title}</h2>
+                <p>{item.descriptions}</p>
+                <p>Total Vote : {item.yes + item.no}</p>
+                <p>
+                  Comments :{" "}
+                  {item?.commentText?.map((comment, index) => (
+                    <p key={index} className="flex">{comment},</p>
+                  ))}
+                </p>
 
-              <Link to={`/surveysDetails/${item._id}`}>
-                <button>
-                  Navigate to Voting Page
-                  <svg
-                    className="-mr-1 ml-2 h-4 w-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
+                <div className="card-actions">
+                  <Link
+                    className="btn btn-success"
+                    to={`/surveysDetails/${item._id}`}
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </Link>
+                    Navigate to Voting Page
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         ))}

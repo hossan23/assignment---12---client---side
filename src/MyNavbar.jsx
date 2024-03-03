@@ -37,11 +37,21 @@ const MyNavbar = () => {
 
   const navi = (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/surveys-page">Surveys Page</Link>
-      <Link to="/about">About Us</Link>
-      <Link to="/contact">Contact Us</Link>
-      <Link to="/privacy">Privacy & Policy</Link>
+      <Link className="transform hover:scale-110 transition" to="/">
+        Home
+      </Link>
+      <Link className="transform hover:scale-110 transition" to="/surveys-page">
+        Surveys Page
+      </Link>
+      <Link className="transform hover:scale-110 transition" to="/about">
+        About Us
+      </Link>
+      <Link className="transform hover:scale-110 transition" to="/contact">
+        Contact Us
+      </Link>
+      <Link className="transform hover:scale-110 transition" to="/privacy">
+        Privacy & Policy
+      </Link>
       {userRole?.role === "user" && <Link to="/become-pro">Become A pro</Link>}
     </>
   );
@@ -89,14 +99,14 @@ const MyNavbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 space-x-10">{navi}</ul>
+            <ul className="menu menu-horizontal px-1 space-x-10 ">{navi}</ul>
           </div>
           <div className="navbar-end">
             <details className="dropdown">
               <summary className="m-1 btn bg-transparent border-none ">
                 <img className="rounded-full w-10" src={user?.photoURL} />
               </summary>
-              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box -ml-28 space-y-1">
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box -ml-28 space-y-1 ">
                 {user && (
                   <>
                     <span className="block text-sm">{user?.displayName}</span>
