@@ -58,7 +58,7 @@ const MyNavbar = () => {
   return (
     <>
       <Headroom>
-        <div className="navbar bg-[#0891B2] text-white">
+        <div className="navbar bg-info text-white sm:rounded-b-2xl">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -99,14 +99,16 @@ const MyNavbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 space-x-10 ">{navi}</ul>
+            <ul className="menu menu-horizontal px-1 space-x-10 text-base">
+              {navi}
+            </ul>
           </div>
           <div className="navbar-end">
             <details className="dropdown">
               <summary className="m-1 btn bg-transparent border-none ">
                 <img className="rounded-full w-10" src={user?.photoURL} />
               </summary>
-              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box -ml-28 space-y-1 ">
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral rounded-box -ml-28 space-y-1 ">
                 {user && (
                   <>
                     <span className="block text-sm">{user?.displayName}</span>

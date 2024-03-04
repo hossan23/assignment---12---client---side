@@ -10,7 +10,6 @@ const LatestSurveys = () => {
       const response = await axiosPublic.get("/surveys");
       return response.data;
     },
-
   });
 
   const filter = data?.filter((item) => item.status === "publish");
@@ -23,22 +22,25 @@ const LatestSurveys = () => {
 
   return (
     <>
-      <h1 className="text-3xl text-center font-semibold my-4">
-        Latest Surveys
+      <h1 className="text-2xl sm:text-3xl md:text-4xl  text-center font-semibold my-4 sm:my-6 md:my-8  capitalize">
+        latest surveys
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {latestSixSurveys?.map((item) => (
           <div key={item._id}>
-            <div className="card bg-red-100 shadow-xl">
+            <div className="card h-full bg-neutral text-neutral-content shadow-xl rounded-none sm:rounded-2xl">
               <div className="card-body">
                 <h2 className="card-title">{item.title}</h2>
                 <p>{item.descriptions}</p>
+                <p>Category : {item.category}</p>
                 <p>Total Vote : {item.yes + item.no}</p>
+                <p>Total Like : {item.yes}</p>
+                <p>Total DisLike : {item.no}</p>
                 <p>
                   Comments :{" "}
                   {item?.commentText?.map((comment, index) => (
-                    <p key={index} className="flex">{comment},</p>
+                    <span key={index}>{comment}, </span>
                   ))}
                 </p>
 

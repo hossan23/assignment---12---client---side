@@ -5,12 +5,14 @@ import MyFooter from "./MyFooter";
 const Root = () => {
   return (
     <>
-      <MyNavbar />
+      <div className="container mx-auto ">
+        <MyNavbar />
 
-      <div className="container mx-auto min-h-[calc(100vh-68px)]">
-        <Outlet/>
+        <div className="min-h-screen">
+          <Outlet />
+        </div>
+        <MyFooter />
       </div>
-      <MyFooter/>
     </>
   );
 };
