@@ -37,19 +37,19 @@ const MyNavbar = () => {
 
   const navi = (
     <>
-      <Link className="transform hover:scale-110 transition" to="/">
+      <Link className="hover:scale-105 transition" to="/">
         Home
       </Link>
-      <Link className="transform hover:scale-110 transition" to="/surveys-page">
+      <Link className="hover:scale-105 transition" to="/surveys-page">
         Surveys Page
       </Link>
-      <Link className="transform hover:scale-110 transition" to="/about">
+      <Link className="hover:scale-105 transition" to="/about">
         About Us
       </Link>
-      <Link className="transform hover:scale-110 transition" to="/contact">
+      <Link className="hover:scale-105 transition" to="/contact">
         Contact Us
       </Link>
-      <Link className="transform hover:scale-110 transition" to="/privacy">
+      <Link className="hover:scale-105 transition" to="/privacy">
         Privacy & Policy
       </Link>
       {userRole?.role === "user" && <Link to="/become-pro">Become A pro</Link>}
@@ -58,7 +58,7 @@ const MyNavbar = () => {
   return (
     <>
       <Headroom>
-        <div className="navbar bg-info text-white sm:rounded-b-2xl">
+        <div className="navbar bg-info text-info-content sm:rounded-b-2xl">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -84,7 +84,7 @@ const MyNavbar = () => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content z-[1] p-2 shadow bg-neutral text-neutral-content rounded-box w-40"
               >
                 {navi}
               </ul>
@@ -92,30 +92,37 @@ const MyNavbar = () => {
             <Link to="/" className="btn btn-ghost text-xl">
               <img
                 src="/surveyor.png"
-                className="mr-3 h-6 sm:h-9"
+                className="h-6 sm:h-9"
                 alt="Flowbite React Logo"
               />
               InsightPulse!
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 space-x-10 text-base">
+            <ul className="menu menu-horizontal px-1 space-x-10 text-lg font-medium">
               {navi}
             </ul>
           </div>
           <div className="navbar-end">
             <details className="dropdown">
-              <summary className="m-1 btn bg-transparent border-none ">
-                <img className="rounded-full w-10" src={user?.photoURL} />
+              <summary className="m-1 btn bg-neutral border-none">
+                <img
+                  className="w-10 rounded-full"
+                  src={user?.photoURL ? user.photoURL : "user.png"}
+                />
               </summary>
-              <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral rounded-box -ml-28 space-y-1 ">
-                {user && (
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-neutral text-neutral-content rounded-box right-0 space-y-2 ">
+                {user ? (
                   <>
                     <span className="block text-sm">{user?.displayName}</span>
                     <span className="block truncate text-sm font-medium">
                       {user?.email}
                     </span>
-                    <Link to="/dashboard">Dashboard</Link>
+                    <hr />
+                    <Link className="btn btn-success btn-sm" to="/dashboard">
+                      Dashboard
+                    </Link>
+                    <hr />
                     <button
                       className="btn btn-sm btn-error"
                       onClick={handleLogOut}
@@ -123,12 +130,15 @@ const MyNavbar = () => {
                       Sign out
                     </button>
                   </>
-                )}
-
-                {!user && (
+                ) : (
                   <>
-                    <Link to="/register">Register</Link>
-                    <Link to="/login">Login</Link>
+                    <Link className="btn btn-sm" to="/register">
+                      Register
+                    </Link>
+                    <hr />
+                    <Link className="btn btn-sm" to="/login">
+                      Login
+                    </Link>
                   </>
                 )}
               </ul>

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import MyLoader from "../../MyLoader";
 
 const SurveyDetails = () => {
   const navigate = useNavigate();
@@ -35,8 +36,7 @@ const SurveyDetails = () => {
   const filter = votersData?.find((item) => item.surveyId === _id);
   //  console.log(filter?.surveyId);
 
-  if (isPending)
-    return <Spinner aria-label="Extra large spinner example" size="xl" />;
+  if (isPending) return <MyLoader />;
 
   if (error) return console.log(error.message);
 
@@ -80,7 +80,7 @@ const SurveyDetails = () => {
 
   return (
     <form onSubmit={handleVote}>
-      <Card className="max-w-sm" horizontal>
+      <div className="max-w-sm">
         <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
@@ -93,24 +93,24 @@ const SurveyDetails = () => {
         <fieldset className="flex max-w-md  gap-4 ">
           <legend className="mb-4">Place Your Vote Here</legend>
           <div className="flex items-center gap-2">
-            <Radio id="yes" name="vote" value="yes" />
-            <Label htmlFor="yes">Yes</Label>
+            {/* <Radio id="yes" name="vote" value="yes" />
+            <Label htmlFor="yes">Yes</Label> */}
           </div>
           <div className="flex items-center gap-2">
-            <Radio id="no" name="vote" value="no" />
-            <Label htmlFor="no">No</Label>
+            {/* <Radio id="no" name="vote" value="no" />
+            <Label htmlFor="no">No</Label> */}
           </div>
         </fieldset>
         {/* like or dislike */}
         <fieldset className="flex max-w-md  gap-4 ">
           <legend className="mb-4">Do you like this survey?</legend>
           <div className="flex items-center gap-2">
-            <Radio id="Like" name="surveyFeedBack" value="like" />
-            <Label htmlFor="Like">Like</Label>
+            {/* <Radio id="Like" name="surveyFeedBack" value="like" />
+            <Label htmlFor="Like">Like</Label> */}
           </div>
           <div className="flex items-center gap-2">
-            <Radio id="Dislike" name="surveyFeedBack" value="disLike" />
-            <Label htmlFor="Dislike">Dislike</Label>
+            {/* <Radio id="Dislike" name="surveyFeedBack" value="disLike" />
+            <Label htmlFor="Dislike">Dislike</Label> */}
           </div>
         </fieldset>
         {usersData?.role === "pro-user" && (
@@ -133,7 +133,7 @@ const SurveyDetails = () => {
         >
           Submit
         </button>
-      </Card>
+      </div>
     </form>
   );
 };

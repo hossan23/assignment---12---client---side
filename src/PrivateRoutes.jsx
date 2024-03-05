@@ -11,8 +11,8 @@ const PrivateRoutes = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="h-screen flex justify-center items-center">
-        <Spinner aria-label="Extra large spinner example" size="xl" />
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-dots loading-lg"></span>
       </div>
     );
   }

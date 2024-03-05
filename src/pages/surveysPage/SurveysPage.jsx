@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import MyLoader from "../../MyLoader";
 
 const SurveysPage = () => {
   const axiosPublic = useAxiosPublic();
@@ -13,14 +15,13 @@ const SurveysPage = () => {
   });
 
   const filter = data?.filter((item) => item.status === "publish");
-  //  console.log(filter);
 
-  if (isPending) return;
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
   return (
     <>
-      <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-semibold my-4 sm:my-6 md:my-8 lg:my-10 capitalize">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl  text-center font-semibold my-4 sm:my-6 md:my-8 capitalize">
         all surveys
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 my-10">
@@ -61,11 +62,13 @@ const SurveysPage = () => {
             <div className="card h-full bg-neutral text-neutral-content shadow-xl rounded-none sm:rounded-2xl">
               <div className="card-body">
                 <h2 className="card-title">{item.title}</h2>
-                <p>{item.descriptions}</p>
+                <hr />
+                <p>Descriptions : {item.descriptions}</p>
+
                 <p>Category : {item.category}</p>
-                <p>Total Vote : {item.yes + item.no}</p>
                 <p>Total Like : {item.yes}</p>
                 <p>Total DisLike : {item.no}</p>
+                <p>Total Vote : {item.yes + item.no}</p>
                 <p>
                   Comments :{" "}
                   {item?.commentText?.map((comment, index) => (
@@ -78,7 +81,7 @@ const SurveysPage = () => {
                     className="btn btn-success"
                     to={`/surveysDetails/${item._id}`}
                   >
-                    Navigate to Voting Page
+                    Navigate to Voting Page <FaLongArrowAltRight />
                   </Link>
                 </div>
               </div>
