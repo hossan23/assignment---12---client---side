@@ -3,6 +3,14 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../firebase/AuthProvider";
+import { FaHome } from "react-icons/fa";
+import { IoCreate } from "react-icons/io5";
+import { RiSurveyFill } from "react-icons/ri";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { MdManageAccounts } from "react-icons/md";
+import { MdOutlineManageSearch } from "react-icons/md";
+import { FaDatabase } from "react-icons/fa";
 
 const MySidebar = () => {
   const axiosPublic = useAxiosPublic();
@@ -24,32 +32,44 @@ const MySidebar = () => {
   if (error) return console.log(error.message);
 
   return (
-    // <Sidebar aria-label="Default sidebar example">
-    //   <Sidebar.Items>
-    //     <Sidebar.ItemGroup>
-    <>
-      <h1 className="font-semibold text-sm border-sky-400 border">
-        My Role : {filter?.role}
+    <aside className="bg-neutral text-neutral-content h-full sm:w-60 p-4 font-semibold">
+      <h1 className="capitalize text-lg">
+        My Role : <span className="font-bold text-info">{filter?.role}</span>
       </h1>
-      <ul className="font-semibold space-y-4">
+      <hr />
+      <ul className="mt-4 space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4 capitalize">
         <li>
-          <Link to="/">Go back to Home</Link>
+          <Link to="/">
+            Go back to Home <FaHome />
+          </Link>
         </li>
         {/* surveyor */}
         {filter?.role === "surveyor" && (
           <>
             <li>
-              <Link to="survey-creation">Create Survey</Link>
+              <Link to="survey-creation">
+                Create Survey
+                <IoCreate />
+              </Link>
             </li>
             <li>
-              <Link to="my-surveys">My Surveys</Link>
+              <Link to="my-surveys">
+                My Surveys
+                <RiSurveyFill />
+              </Link>
             </li>
 
             <li>
-              <Link to="admin-feedback">Admin Feedback</Link>
+              <Link to="admin-feedback">
+                Admin Feedback
+                <MdAdminPanelSettings />
+              </Link>
             </li>
             <li>
-              <Link to="user-feedback">User Feedbacks</Link>
+              <Link to="user-feedback">
+                User Feedbacks
+                <FaUser />
+              </Link>
             </li>
           </>
         )}
@@ -57,10 +77,16 @@ const MySidebar = () => {
         {filter?.role === "admin" && (
           <>
             <li>
-              <Link to="manage-users">Manage users</Link>
+              <Link to="manage-users">
+                Manage users
+                <MdManageAccounts />
+              </Link>
             </li>
             <li>
-              <Link to="manage-survey">Manage Survey</Link>
+              <Link to="manage-survey">
+                Manage Survey
+                <MdOutlineManageSearch />
+              </Link>
             </li>
           </>
         )}
@@ -68,17 +94,17 @@ const MySidebar = () => {
         {filter?.role === "user" || filter?.role === "pro-user" ? (
           <>
             <li>
-              <Link to="participated-surveys">Participated Surveys</Link>
+              <Link to="participated-surveys">
+                Participated Surveys
+                <FaDatabase />
+              </Link>
             </li>
           </>
         ) : (
           ""
         )}
       </ul>
-    </>
-    //     </Sidebar.ItemGroup>
-    //   </Sidebar.Items>
-    // </Sidebar>
+    </aside>
   );
 };
 
