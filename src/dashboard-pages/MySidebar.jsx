@@ -32,7 +32,7 @@ const MySidebar = () => {
   if (error) return console.log(error.message);
 
   return (
-    <aside className="bg-neutral text-neutral-content h-full sm:w-60 p-4 font-semibold">
+    <div className="bg-neutral text-neutral-content h-full p-4 font-semibold">
       <h1 className="capitalize text-lg">
         My Role : <span className="font-bold text-info">{filter?.role}</span>
       </h1>
@@ -104,7 +104,7 @@ const MySidebar = () => {
           ""
         )}
       </ul>
-    </aside>
+    </div>
   );
 };
 
