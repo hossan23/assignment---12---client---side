@@ -60,74 +60,57 @@ const ManageSurvey = () => {
         Manage Surveys
       </h1>
       <hr />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-2">
-        {data?.map((item) => (
-          <div key={item._id}>
-            <Card className="">
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {item.title}
-              </h5>
-              <hr />
-              <p className="font-medium text-gray-700 dark:text-gray-400">
-                {item.descriptions}
-              </p>
-              <p>
-                Status :{" "}
-                {item.status === "publish"
-                  ? "Published"
-                  : "Pending" && item.status === "unPublish"
-                  ? "Un-Published"
-                  : "Pending"}
-              </p>
-              {item?.report?.map((comment, index) => (
-                <p key={index} className="text-red-500">
-                  User-Report : {comment}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 m-2">
+        {data?.map((item, index) => (
+          <div key={index}>
+            <div className="card h-full bg-neutral text-neutral-content shadow-xl rounded-none sm:rounded-2xl capitalize glass">
+              <div className="card-body">
+                <h2 className="card-title">{item.title}</h2>
+                <hr />
+                <p>Description : {item.descriptions}</p>
+                <p>
+                  Status :{" "}
+                  {item.status === "publish"
+                    ? "Published"
+                    : "Pending" && item.status === "unPublish"
+                    ? "Un-Published"
+                    : "Pending"}
                 </p>
-              ))}
 
-              <Button onClick={() => handlePublish(item._id)}>
-                Publish
-                <svg
-                  className="-mr-1 ml-2 h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Button>
-              <form>
-                <label className="font-semibold capitalize">
-                  If you want to unpublish tell the surveyor why
-                </label>
-                <input
-                  className="w-full"
-                  type="text"
-                  name="adminFeedback"
-                  id={`${item._id}`}
-                />
-              </form>
+                <p>
+                  <span className="text-error">User-Reports</span>:{" "}
+                  {item?.report?.map((comment, index) => (
+                    <span key={index}>{comment}. </span>
+                  ))}
+                </p>
 
-              <Button onClick={() => handleUnPublish(item._id)}>
-                Un-Publish
-                <svg
-                  className="-mr-1 ml-2 h-4 w-4"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
+                <button
+                  className="btn btn-info"
+                  onClick={() => handlePublish(item._id)}
                 >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
+                  Publish
+                </button>
+
+                <form>
+                  <label className="font-semibold capitalize">
+                    If you want to unpublish tell the surveyor why
+                  </label>
+                  <textarea
+                    className="w-full"
+                    type="text"
+                    name="adminFeedback"
+                    id={`${item._id}`}
                   />
-                </svg>
-              </Button>
-            </Card>
+                </form>
+
+                <button
+                  className="btn btn-error"
+                  onClick={() => handleUnPublish(item._id)}
+                >
+                  Un-Publish
+                </button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

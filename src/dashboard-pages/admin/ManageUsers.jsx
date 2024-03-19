@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const axiosPublic = useAxiosPublic();
@@ -23,78 +24,71 @@ const ManageUsers = () => {
 
   const handleMakeAdmin = (item) => {
     const role = { role: "admin" };
-    console.log("hi", role);
 
     axiosPublic
       .patch(`/users/${item.email}`, role)
       .then((res) => {
         console.log(res.data);
         refetch();
+        Swal.fire(`${item.name} is now an Admin`);
       })
       .catch((err) => console.log(err.message));
   };
 
   const handleMakeSurveyor = (item) => {
     const role = { role: "surveyor" };
-    console.log("hi", role);
+
     axiosPublic
       .patch(`/users/${item.email}`, role)
       .then((res) => {
         console.log(res.data);
         refetch();
+        Swal.fire(`${item.name} is now a Surveyor`);
       })
       .catch((err) => console.log(err.message));
   };
   return (
     <div>
       <h1 className="text-center text-2xl my-4">Manage Users</h1>
-
+      <hr />
       <div className="overflow-x-auto">
-        <Table striped>
-          <Table.Head>
-            <Table.HeadCell>Name</Table.HeadCell>
-            <Table.HeadCell>Email</Table.HeadCell>
-            <Table.HeadCell>Role</Table.HeadCell>
-            <Table.HeadCell>
-              <span className="sr-only">admin</span>
-            </Table.HeadCell>
-            <Table.HeadCell>
-              <span className="sr-only">Surveyor</span>
-            </Table.HeadCell>
-          </Table.Head>
-          <Table.Body className="divide-y">
-            {filter?.map((item) => (
-              <Table.Row
-                className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                key={item._id}
-              >
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {item.name}
-                </Table.Cell>
-                <Table.Cell>{item.email}</Table.Cell>
-                <Table.Cell>{item.role}</Table.Cell>
-                <Table.Cell>
+        <table className="table font-semibold">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Current-Role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filter?.map((item, index) => (
+              <tr className="hover" key={index}>
+                <td>{index + 1}</td>
+                <td>{item?.name}</td>
+                <td>{item?.email}</td>
+                <td>{item?.role}</td>
+                <td className="space-x-2">
                   <button
-                    onClick={() => handleMakeAdmin(item)}
-                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    name="admin"
-                  >
-                    Admin
-                  </button>
-                </Table.Cell>
-                <Table.Cell>
-                  <button
+                    className="btn btn-sm btn-primary"
                     onClick={() => handleMakeSurveyor(item)}
-                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                    name="surveyor"
                   >
                     Surveyor
                   </button>
-                </Table.Cell>
-              </Table.Row>
+
+                  <button
+                    className="btn btn-sm btn-secondary"
+                    onClick={() => handleMakeAdmin(item)}
+                  >
+                    Admin
+                  </button>
+                </td>
+              </tr>
             ))}
-          </Table.Body>
-        </Table>
+          </tbody>
+        </table>
       </div>
     </div>
   );

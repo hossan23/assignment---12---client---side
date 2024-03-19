@@ -31,7 +31,7 @@ const LatestSurveys = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {latestSixSurveys?.map((item) => (
           <div key={item._id}>
-            <div className="card h-full bg-neutral  text-neutral-content shadow-xl rounded-none sm:rounded-2xl">
+            <div className="card h-full bg-neutral  text-neutral-content shadow-xl rounded-none sm:rounded-2xl glass">
               <div className="card-body">
                 <h2 className="card-title">{item.title}</h2>
                 <hr />

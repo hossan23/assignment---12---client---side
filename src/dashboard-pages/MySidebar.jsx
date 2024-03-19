@@ -38,7 +38,7 @@ const MySidebar = () => {
       </h1>
       <hr />
       <ul className="mt-4 space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4 capitalize">
-        <li>
+        <li className="hover:bg-base-content p-2 rounded">
           <Link to="/">
             Go back to Home <FaHome />
           </Link>
@@ -46,26 +46,26 @@ const MySidebar = () => {
         {/* surveyor */}
         {filter?.role === "surveyor" && (
           <>
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="survey-creation">
                 Create Survey
                 <IoCreate />
               </Link>
             </li>
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="my-surveys">
                 My Surveys
                 <RiSurveyFill />
               </Link>
             </li>
 
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="admin-feedback">
                 Admin Feedback
                 <MdAdminPanelSettings />
               </Link>
             </li>
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="user-feedback">
                 User Feedbacks
                 <FaUser />
@@ -76,13 +76,13 @@ const MySidebar = () => {
         {/* admin */}
         {filter?.role === "admin" && (
           <>
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="manage-users">
                 Manage users
                 <MdManageAccounts />
               </Link>
             </li>
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="manage-survey">
                 Manage Survey
                 <MdOutlineManageSearch />
@@ -93,7 +93,7 @@ const MySidebar = () => {
         {/* user and pro-user */}
         {filter?.role === "user" || filter?.role === "pro-user" ? (
           <>
-            <li>
+            <li className="hover:bg-base-content p-2 rounded">
               <Link to="participated-surveys">
                 Participated Surveys
                 <FaDatabase />
