@@ -130,6 +130,7 @@ const SurveyDetails = () => {
                 type="text"
                 placeholder="Comment here . . ."
                 className="input input-bordered"
+                name="comment"
                 required
               />
             </>
@@ -141,6 +142,7 @@ const SurveyDetails = () => {
             type="text"
             placeholder="Type here . . ."
             className="input input-bordered"
+            name="report"
             required
           />
         </div>

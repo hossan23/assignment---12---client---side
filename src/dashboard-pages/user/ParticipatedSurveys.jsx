@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
-
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
 
@@ -44,29 +43,32 @@ const ParticipatedSurveys = () => {
       </h1>
       <hr />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 m-2">
-        {filter?.map((item) => (
-          <div key={item._id}>
-            <div className="max-w-sm">
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {item.title}
-              </h5>
-              <hr />
-              <p className="font-medium text-gray-700 dark:text-gray-400">
-                {item.descriptions}
-              </p>
-              <p>Category : {item.category}</p>
+        {filter?.map((item, index) => (
+          <div key={index}>
+            {/*  */}
+            <div className="card h-full bg-neutral  text-neutral-content shadow-xl rounded-none sm:rounded-2xl glass">
+              <div className="card-body">
+                <h2 className="card-title">{item.title}</h2>
+                <hr />
+                <p>{item.descriptions}</p>
+                <p>Category : {item.category}</p>
+                <p>Total Like : {item.yes}</p>
+                <p>Total DisLike : {item.no}</p>
+                <p>Total Vote : {item.yes + item.no}</p>
+                <p>
+                  Comments :{" "}
+                  {item?.commentText?.map((comment, index) => (
+                    <span key={index}>{comment}, </span>
+                  ))}
+                </p>
 
-              <p>Total Vote : {item.yes + item.no}</p>
-
-              <>
-                {item?.commentText?.map((comment, index) => {
-                  <p key={index}>Comment : {comment}</p>;
-                })}
-              </>
-
-              <Link to={`/surveysResult/${item._id}`} className="btn btn-info">
-                Result
-              </Link>
+                <Link
+                  to={`/surveysResult/${item._id}`}
+                  className="btn btn-info"
+                >
+                  Result
+                </Link>
+              </div>
             </div>
           </div>
         ))}

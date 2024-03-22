@@ -81,7 +81,7 @@ const ManageSurvey = () => {
                   <p>
                     <span className="text-error">User-Reports</span>:{" "}
                     {item?.report?.map((comment, index) => (
-                      <span key={index}>{comment}. </span>
+                      <span key={index}>{comment}, </span>
                     ))}
                   </p>
                 )}
