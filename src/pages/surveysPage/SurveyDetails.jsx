@@ -40,8 +40,6 @@ const SurveyDetails = () => {
 
   if (error) return console.log(error.message);
 
-  //survey
-
   const handleVote = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -79,62 +77,71 @@ const SurveyDetails = () => {
   };
 
   return (
-    <form onSubmit={handleVote}>
-      <div className="max-w-sm">
-        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title}
-        </h5>
-        <hr />
-        <p className="font-medium text-gray-700 dark:text-gray-400">
-          {descriptions}
-        </p>
-        <hr />
-        {/* vote */}
-        <fieldset className="flex max-w-md  gap-4 ">
-          <legend className="mb-4">Place Your Vote Here</legend>
-          <div className="flex items-center gap-2">
-            {/* <Radio id="yes" name="vote" value="yes" />
-            <Label htmlFor="yes">Yes</Label> */}
+    <>
+      <form className="card-body capitalize text-center" onSubmit={handleVote}>
+        <div className="form-control space-y-2">
+          <h1 className="text-2xl font-semibold">{title}</h1>
+          <hr />
+          <p>{descriptions}</p>
+        </div>
+        <div className="form-control">
+          <h1 className="text-xl">Place your vote here</h1>
+          <div className="space-x-10 my-4">
+            <span>Yes</span>
+            <input
+              type="radio"
+              name="radio-5"
+              value="yes"
+              className="radio radio-success"
+            />
+            <input
+              type="radio"
+              name="radio-5"
+              value="no"
+              className="radio radio-success"
+            />
+            <span>No</span>
           </div>
-          <div className="flex items-center gap-2">
-            {/* <Radio id="no" name="vote" value="no" />
-            <Label htmlFor="no">No</Label> */}
-          </div>
-        </fieldset>
-        {/* like or dislike */}
-        <fieldset className="flex max-w-md  gap-4 ">
-          <legend className="mb-4">Do you like this survey?</legend>
-          <div className="flex items-center gap-2">
-            {/* <Radio id="Like" name="surveyFeedBack" value="like" />
-            <Label htmlFor="Like">Like</Label> */}
-          </div>
-          <div className="flex items-center gap-2">
-            {/* <Radio id="Dislike" name="surveyFeedBack" value="disLike" />
-            <Label htmlFor="Dislike">Dislike</Label> */}
-          </div>
-        </fieldset>
-        {usersData?.role === "pro-user" && (
-          <>
-            <label>You can put a comment about this survey</label>
-            <input type="text" name="comment" />
-          </>
-        )}
-        <label className="capitalize">
-          if u Do not like this survey tell us about it!
-        </label>
-        <input type="text" name="report" />
-        <button
-          disabled={
-            usersData?.role === "admin" ||
-            usersData?.role === "surveyor" ||
-            filter?.surveyId === _id
-          }
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-500"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
+
+          {usersData?.role === "pro-user" && (
+            <>
+              <label className="mb-2">
+                You can put a comment about this survey
+              </label>
+              <input
+                type="text"
+                placeholder="Comment here . . ."
+                className="input input-bordered"
+                required
+              />
+            </>
+          )}
+          <label className="mb-2">
+            if u Do not like this survey, you can tell us about it.
+          </label>
+          <input
+            type="text"
+            placeholder="Type here . . ."
+            className="input input-bordered"
+            required
+          />
+        </div>
+
+        <div className="form-control mt-2">
+          <button
+            type="submit"
+            disabled={
+              usersData?.role === "admin" ||
+              usersData?.role === "surveyor" ||
+              filter?.surveyId === _id
+            }
+            className="btn btn-success"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

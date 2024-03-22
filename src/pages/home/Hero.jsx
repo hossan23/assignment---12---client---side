@@ -12,7 +12,7 @@ const Hero = () => {
           believe in the<br></br> power of collective voices to drive change,
           shape industries,<br></br> and influence decisions.
         </p>
-        <Link to="/dashboard/survey-creation" className="btn btn-info">
+        <Link to="/register" className="btn btn-info">
           Sign up free
         </Link>
       </div>

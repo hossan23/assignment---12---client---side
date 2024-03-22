@@ -72,7 +72,7 @@ const SurveyCreation = () => {
             className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="grid-state"
           >
-            State
+            Category
           </label>
           <div className="relative">
             <select

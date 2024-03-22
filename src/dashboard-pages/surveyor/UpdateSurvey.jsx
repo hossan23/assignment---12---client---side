@@ -32,59 +32,78 @@ const UpdateSurvey = () => {
       .catch((err) => console.log(err.message));
   };
   return (
-    <div>
-      <h1>Update Survey id : {_id}</h1>
-      <form onSubmit={handleCreate}>
-        {/* title */}
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="small" value="Title" />
-          </div>
-          <TextInput
-            defaultValue={title}
-            name="title"
-            id="small"
-            type="text"
-            sizing="sm"
-          />
-        </div>
-        {/* description */}
-        <div>
-          <div className="mb-2 block">
-            <Label htmlFor="large" value="Descriptions" />
-          </div>
-          <TextInput
-            defaultValue={descriptions}
-            name="descriptions"
-            id="large"
-            type="text"
-            sizing="lg"
-          />
-        </div>
-        {/* category */}
-        <div className="max-w-md">
-          <div className="mb-2 block">
-            <Label htmlFor="countries" value="Select your category" />
-          </div>
-          <Select
-            id="countries"
-            name="category"
-            defaultValue={category}
-            required
+    <>
+      <form onSubmit={handleCreate} className="mt-2 sm:mt-4 md:mt-6 lg:mt-8">
+        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label
+            className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="title"
           >
-            <option value="Technology">Technology</option>
-            <option value="Health">Health</option>
-            <option value="Education">Education</option>
-            <option value="Consumer Preferences">Consumer Preferences</option>
-          </Select>
+            Title
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            id="title"
+            type="text"
+            placeholder="Title..."
+            name="title"
+            defaultValue={title}
+          />
         </div>
-        <div className="text-center mt-2">
-          <Button color="success" type="submit">
-            Success
-          </Button>
+        <div className="w-full md:w-1/2 px-3">
+          <label
+            className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-last-name"
+          >
+            Descriptions
+          </label>
+          <textarea
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-last-name"
+            type="text"
+            placeholder="Descriptions..."
+            name="descriptions"
+            defaultValue={descriptions}
+          />
+        </div>
+
+        <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+          <label
+            className="block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="grid-state"
+          >
+            Category
+          </label>
+          <div className="relative">
+            <select
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-state"
+              name="category"
+              defaultValue={category}
+            >
+              <option>Technology</option>
+              <option>Health</option>
+              <option>Consumer</option>
+              <option>Education</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg
+                className="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className="text-center sm:text-start">
+          <button type="submit" className="btn btn-info m-3 w-60">
+            Update
+          </button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

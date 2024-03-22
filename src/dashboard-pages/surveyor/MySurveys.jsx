@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
-
 import { Link } from "react-router-dom";
 
 const MySurveys = () => {
@@ -23,51 +22,56 @@ const MySurveys = () => {
   if (error) return "An error has occurred: " + error.message;
   return (
     <div>
-      <h1 className="text-2xl text-center my-4 font-semibold">
+      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-semibold my-4">
         All My Surveys
       </h1>
-      <hr className="mb-4" />
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {filter?.map((item) => (
-          <div key={item._id}>
-            <Card className="max-w-sm">
-              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                {item.title}
-              </h5>
-              <hr />
-              <p className="font-medium text-gray-700 dark:text-gray-400">
-                {item.descriptions}
-              </p>
-              <p>Category : {item.category}</p>
-              <p>
-                status :{" "}
-                {item.status === "publish"
-                  ? "Published"
-                  : "" || item.status === "pending"
-                  ? "Pending"
-                  : "" || item.status === "unPublish"
-                  ? "Rejected by Admin"
-                  : ""}
-              </p>
+      <hr />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 m-2">
+        {filter?.map((item, index) => (
+          <div key={index}>
+            <div className="card h-full bg-neutral text-neutral-content shadow-xl rounded-none sm:rounded-2xl capitalize glass">
+              <div className="card-body">
+                <h2 className="card-title">{item.title}</h2>
+                <hr />
+                <p>Description : {item.descriptions}</p>
+                <p>Category : {item.category}</p>
+                <p>
+                  status :{" "}
+                  {item.status === "publish"
+                    ? "Published✅"
+                    : "" || item.status === "pending"
+                    ? "Pending🟡"
+                    : "" || item.status === "unPublish"
+                    ? "Rejected by Admin🔴"
+                    : ""}
+                </p>
+                <p>Total vote : {item.yes + item.no}</p>
 
-              <Link to={`/dashboard/update-survey/${item._id}`}>
-                <Button>
+                {item.adminFeedback && (
+                  <p>
+                    <span className="text-red-500 font-semibold">
+                      Admin Feedback :{" "}
+                    </span>
+                    {item.adminFeedback}
+                  </p>
+                )}
+                {item.report && (
+                  <p>
+                    <span className="text-red-500 font-semibold">
+                      User Feedback :{" "}
+                    </span>
+                    {item.adminFeedback}
+                  </p>
+                )}
+
+                <Link
+                  to={`/dashboard/update-survey/${item._id}`}
+                  className="btn btn-info"
+                >
                   Update
-                  <svg
-                    className="-mr-1 ml-2 h-4 w-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Button>
-              </Link>
-            </Card>
+                </Link>
+              </div>
+            </div>
           </div>
         ))}
       </div>

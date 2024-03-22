@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
-import { FaLongArrowAltRight } from "react-icons/fa";
 import MyLoader from "../../MyLoader";
 
 const LatestSurveys = () => {
@@ -47,15 +46,12 @@ const LatestSurveys = () => {
                   ))}
                 </p>
 
-                <div className="card-actions">
-                  <Link
-                    className="btn btn-success"
-                    to={`/surveysDetails/${item._id}`}
-                  >
-                    Navigate to Voting Page
-                    <FaLongArrowAltRight />
-                  </Link>
-                </div>
+                <Link
+                  className="btn btn-success"
+                  to={`/surveysDetails/${item._id}`}
+                >
+                  Navigate to Voting Page
+                </Link>
               </div>
             </div>
           </div>

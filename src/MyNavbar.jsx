@@ -119,7 +119,10 @@ const MyNavbar = () => {
                       {user?.email}
                     </span>
                     <hr />
-                    <Link className="btn btn-success btn-sm" to="/dashboard">
+                    <Link
+                      className="btn btn-success btn-sm"
+                      to="/dashboard/dashboard-home"
+                    >
                       Dashboard
                     </Link>
                     <hr />

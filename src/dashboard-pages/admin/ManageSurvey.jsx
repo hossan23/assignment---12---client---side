@@ -56,11 +56,11 @@ const ManageSurvey = () => {
 
   return (
     <div>
-      <h1 className="text-2xl text-center font-semibold my-4">
+      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-semibold my-4">
         Manage Surveys
       </h1>
       <hr />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 m-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 m-2">
         {data?.map((item, index) => (
           <div key={index}>
             <div className="card h-full bg-neutral text-neutral-content shadow-xl rounded-none sm:rounded-2xl capitalize glass">
@@ -71,29 +71,24 @@ const ManageSurvey = () => {
                 <p>
                   Status :{" "}
                   {item.status === "publish"
-                    ? "Published"
-                    : "Pending" && item.status === "unPublish"
-                    ? "Un-Published"
-                    : "Pending"}
+                    ? "Published✅"
+                    : "Pending🟡" && item.status === "unPublish"
+                    ? "Un-Published🔴"
+                    : "Pending🟡"}
                 </p>
 
-                <p>
-                  <span className="text-error">User-Reports</span>:{" "}
-                  {item?.report?.map((comment, index) => (
-                    <span key={index}>{comment}. </span>
-                  ))}
-                </p>
-
-                <button
-                  className="btn btn-info"
-                  onClick={() => handlePublish(item._id)}
-                >
-                  Publish
-                </button>
+                {item.report && (
+                  <p>
+                    <span className="text-error">User-Reports</span>:{" "}
+                    {item?.report?.map((comment, index) => (
+                      <span key={index}>{comment}. </span>
+                    ))}
+                  </p>
+                )}
 
                 <form>
                   <label className="font-semibold capitalize">
-                    If you want to unpublish tell the surveyor why
+                    If you want to unpublish, tell the surveyor about it.
                   </label>
                   <textarea
                     className="w-full"
@@ -102,13 +97,22 @@ const ManageSurvey = () => {
                     id={`${item._id}`}
                   />
                 </form>
-
-                <button
-                  className="btn btn-error"
-                  onClick={() => handleUnPublish(item._id)}
-                >
-                  Un-Publish
-                </button>
+                {item.status !== "publish" && (
+                  <button
+                    className="btn btn-info"
+                    onClick={() => handlePublish(item._id)}
+                  >
+                    Publish
+                  </button>
+                )}
+                {item.status !== "unPublish" && (
+                  <button
+                    className="btn btn-error"
+                    onClick={() => handleUnPublish(item._id)}
+                  >
+                    Un-Publish
+                  </button>
+                )}
               </div>
             </div>
           </div>

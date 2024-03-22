@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
@@ -47,9 +46,23 @@ const ManageUsers = () => {
       })
       .catch((err) => console.log(err.message));
   };
+  const handleMakeUser = (item) => {
+    const role = { role: "user" };
+
+    axiosPublic
+      .patch(`/users/${item.email}`, role)
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+        Swal.fire(`${item.name} is now a User`);
+      })
+      .catch((err) => console.log(err.message));
+  };
   return (
     <div>
-      <h1 className="text-center text-2xl my-4">Manage Users</h1>
+      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center font-semibold my-4">
+        Manage Users
+      </h1>
       <hr />
       <div className="overflow-x-auto">
         <table className="table font-semibold">
@@ -72,14 +85,20 @@ const ManageUsers = () => {
                 <td>{item?.role}</td>
                 <td className="space-x-2">
                   <button
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm btn-accent"
+                    onClick={() => handleMakeUser(item)}
+                  >
+                    User
+                  </button>
+                  <button
+                    className="btn btn-sm btn-secondary"
                     onClick={() => handleMakeSurveyor(item)}
                   >
                     Surveyor
                   </button>
 
                   <button
-                    className="btn btn-sm btn-secondary"
+                    className="btn btn-sm btn-primary"
                     onClick={() => handleMakeAdmin(item)}
                   >
                     Admin

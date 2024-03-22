@@ -6,8 +6,8 @@ import { AuthContext } from "../firebase/AuthProvider";
 import { FaHome } from "react-icons/fa";
 import { IoCreate } from "react-icons/io5";
 import { RiSurveyFill } from "react-icons/ri";
-import { MdAdminPanelSettings } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
+// import { MdAdminPanelSettings } from "react-icons/md";
+// import { FaUser } from "react-icons/fa";
 import { MdManageAccounts } from "react-icons/md";
 import { MdOutlineManageSearch } from "react-icons/md";
 import { FaDatabase } from "react-icons/fa";
@@ -59,7 +59,7 @@ const MySidebar = () => {
               </Link>
             </li>
 
-            <li className="hover:bg-base-content p-2 rounded">
+            {/* <li className="hover:bg-base-content p-2 rounded">
               <Link to="admin-feedback">
                 Admin Feedback
                 <MdAdminPanelSettings />
@@ -70,7 +70,7 @@ const MySidebar = () => {
                 User Feedbacks
                 <FaUser />
               </Link>
-            </li>
+            </li> */}
           </>
         )}
         {/* admin */}
