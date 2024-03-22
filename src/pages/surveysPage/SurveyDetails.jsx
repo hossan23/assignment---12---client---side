@@ -90,17 +90,35 @@ const SurveyDetails = () => {
             <span>Yes</span>
             <input
               type="radio"
-              name="radio-5"
+              name="vote"
               value="yes"
               className="radio radio-success"
             />
             <input
               type="radio"
-              name="radio-5"
+              name="vote"
               value="no"
               className="radio radio-success"
             />
             <span>No</span>
+          </div>
+          {/*  */}
+          <h1 className="text-xl">Do you like this survey?</h1>
+          <div className="space-x-10 my-4">
+            <span>Like</span>
+            <input
+              type="radio"
+              name="surveyFeedBack"
+              value="like"
+              className="radio radio-success"
+            />
+            <input
+              type="radio"
+              name="surveyFeedBack"
+              value="disLike"
+              className="radio radio-success"
+            />
+            <span>DisLike</span>
           </div>
 
           {usersData?.role === "pro-user" && (
