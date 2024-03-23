@@ -8,6 +8,7 @@ const MyFooter = () => {
           <br />
           Providing reliable website since 2021
         </p>
+        <img src="/surveyor.png" alt="" />
       </aside>
       <nav>
         <h6 className="footer-title">Services</h6>

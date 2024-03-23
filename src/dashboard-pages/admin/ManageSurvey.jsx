@@ -1,3 +1,4 @@
+import MyLoader from "../../MyLoader";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
@@ -11,7 +12,7 @@ const ManageSurvey = () => {
     },
   });
 
-  if (isPending) return "Loading...";
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
 

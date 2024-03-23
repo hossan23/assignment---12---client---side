@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AuthContext } from "../../firebase/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import MyLoader from "../../MyLoader";
 
 const AdminFeedBack = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,7 +19,7 @@ const AdminFeedBack = () => {
   const filter = data?.filter((item) => item.creatorEmail === user.email);
   const filter2 = filter?.filter((item) => item?.status === "unPublish");
 
-  if (isPending) return "Loading...";
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
   return (

@@ -4,6 +4,7 @@
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
+import Swal from "sweetalert2";
 
 // const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_pk);
 
@@ -14,7 +15,10 @@ const BecomePro = () => {
   const handlePay = () => {
     axiosPublic
       .patch(`/users/${user?.email}`, { role: "pro-user" })
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        Swal.fire("You are a Pro User now!");
+      })
       .catch((err) => console.log(err.message));
   };
   return (

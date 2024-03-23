@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
+import MyLoader from "../../MyLoader";
 
 const UserFeedBack = () => {
   const axiosPublic = useAxiosPublic();
@@ -20,7 +21,7 @@ const UserFeedBack = () => {
 
   console.log(filteredWithReports);
 
-  if (isPending) return "Loading...";
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
   return (

@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
+import MyLoader from "../../MyLoader";
 
 const ParticipatedSurveys = () => {
   const axiosPublic = useAxiosPublic();
@@ -33,7 +34,7 @@ const ParticipatedSurveys = () => {
   );
   console.log(filter);
 
-  if (isPending) return "Loading...";
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
   return (
@@ -52,8 +53,7 @@ const ParticipatedSurveys = () => {
                 <hr />
                 <p>{item.descriptions}</p>
                 <p>Category : {item.category}</p>
-                <p>Total Like : {item.yes}</p>
-                <p>Total DisLike : {item.no}</p>
+
                 <p>Total Vote : {item.yes + item.no}</p>
                 <p>
                   Comments :{" "}

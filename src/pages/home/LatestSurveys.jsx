@@ -36,8 +36,6 @@ const LatestSurveys = () => {
                 <hr />
                 <p>{item.descriptions}</p>
                 <p>Category : {item.category}</p>
-                <p>Total Like : {item.yes}</p>
-                <p>Total DisLike : {item.no}</p>
                 <p>Total Vote : {item.yes + item.no}</p>
                 <p>
                   Comments :{" "}

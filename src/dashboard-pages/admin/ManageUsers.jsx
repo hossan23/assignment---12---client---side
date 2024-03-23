@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
 import Swal from "sweetalert2";
+import MyLoader from "../../MyLoader";
 
 const ManageUsers = () => {
   const axiosPublic = useAxiosPublic();
@@ -17,7 +18,7 @@ const ManageUsers = () => {
 
   const filter = data?.filter((item) => item?.email !== user?.email);
 
-  if (isPending) return "Loading...";
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
 

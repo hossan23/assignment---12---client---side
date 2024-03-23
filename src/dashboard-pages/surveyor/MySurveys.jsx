@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../firebase/AuthProvider";
 import { Link } from "react-router-dom";
+import MyLoader from "../../MyLoader";
 
 const MySurveys = () => {
   const axiosPublic = useAxiosPublic();
@@ -17,7 +18,7 @@ const MySurveys = () => {
 
   const filter = data?.filter((item) => item.creatorEmail === user.email);
 
-  if (isPending) return "Loading...";
+  if (isPending) return <MyLoader />;
 
   if (error) return "An error has occurred: " + error.message;
   return (

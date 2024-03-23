@@ -4,11 +4,13 @@ import MyFooter from "./MyFooter";
 
 const Root = () => {
   return (
-    <div className="container mx-auto ">
+    <div className="container mx-auto">
       <MyNavbar />
-      <div className="min-h-screen">
+
+      <div>
         <Outlet />
       </div>
+
       <MyFooter />
     </div>
   );
